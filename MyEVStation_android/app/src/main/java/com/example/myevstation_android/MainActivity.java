@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
@@ -63,11 +64,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.profile_item:
-                        Toast.makeText(getApplicationContext(), "프로필", Toast.LENGTH_SHORT).show();
+                        break;
+
                     case R.id.filter_item:
-                        Toast.makeText(getApplicationContext(), "필터", Toast.LENGTH_SHORT).show();
+                        FilterBottomSheetDialog filterBottomSheetDialog = new FilterBottomSheetDialog();
+                        filterBottomSheetDialog.show(getSupportFragmentManager(), "filterBottomSheetDialog");
+                        break;
+
                     case R.id.favorite_item:
-                        Toast.makeText(getApplicationContext(), "즐겨찾기", Toast.LENGTH_SHORT).show();
+                        FavoriteBottomSheetDialog favoriteBottomSheetDialog =  new FavoriteBottomSheetDialog();
+                        favoriteBottomSheetDialog.show(getSupportFragmentManager(), "favoriteBottomSheetDialog");
+                        break;
                 }
                 return true;
             }
