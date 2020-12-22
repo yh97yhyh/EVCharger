@@ -14,17 +14,13 @@ class StationsQuerySet(ModelViewSet):
 
     def get_queryset(self, query):
         queryset = super().get_queryset()
-        queryset = queryset.filter(addr=query)
+        queryset = queryset.filter(addr__contains=query)
         return queryset
 
 
 # Create your views here.
 class StationsView(APIView):
     def get(self, request):
-        # stations_all_serializer = StationsSerializer(Stations.objects.all(),
-        #             many=True)
-        # return Response({'stations':stations_all_serializer.data,
-        #                     'count':Stations.objects.count()}, status=status.HTTP_200_OK)
         if request.GET.get('query') is None:
                 stations_queryset = Stations.objects.all()
         else:

@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(@NonNull NaverMap naverMap) {
         Log.d(TAG, "onMapReady");
 
-        //지도 상에 마커 표시
+        //지도 상에 현재 위치 표시
         Marker marker = new Marker();
         marker.setPosition(new LatLng(37, 126));
         marker.setMap(naverMap);
