@@ -99,6 +99,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //권확확인. 결과는 onRequestPermissionResult 콜백 메서드 호출
         ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_REQUEST_CODE);
+
+        // 카메라가 이동 되면 호출되는 이벤트트
+       mNaverMap.addOnCameraChangeListener(new NaverMap.OnCameraChangeListener() {
+            @Override
+            public void onCameraChange(int i, boolean b) {
+
+            }
+        });
     }
 
     @Override
