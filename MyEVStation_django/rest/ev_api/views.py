@@ -49,8 +49,7 @@ class StationsView(APIView):
             stations_queryset = StationsQuerySet().get_stations(lat,lng)
 
         stations_queryset_serializer = StationsSerializer(stations_queryset, many=True)
-        return Response({'stations':stations_queryset_serializer.data,
-                        'count':stations_queryset.count()}, status=status.HTTP_200_OK)
+        return Response(stations_queryset_serializer.data, status=status.HTTP_200_OK)
 
 
 
