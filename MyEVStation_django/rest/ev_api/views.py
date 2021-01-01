@@ -17,10 +17,10 @@ class StationsQuerySet(ModelViewSet):
     queryset = Stations.objects.all()
     serializer_class = StationsSerializer
 
-    # def get_queryset(self, addr):
-    #     queryset = super().get_queryset()
-    #     queryset = queryset.filter(addr__contains=query)
-    #     return queryset
+    def get_stations_by_addr(self, addr):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(addr__contains=addr)
+        return queryset
 
     def get_stations(self, lat, lng):
         queryset = Stations.objects.annotate(distance=(6371*ACos(Cos(Radians(float(lat)))*Cos(Radians('lat'))*Cos(Radians('lng')-Radians(float(lng)))
@@ -40,10 +40,16 @@ class StationsView(APIView):
     #     stations_queryset_serializer = StationsSerializer(stations_queryset, many=True)
     #     return Response({'stations':stations_queryset_serializer.data,
     #                         'count':stations_queryset.count()}, status=status.HTTP_200_OK)
+                            
     def get(self, request):
         if request.GET.get('lat') is None or request.GET.get('lng') is None:
+            if request.GET.get('addr') is None: 
                 stations_queryset = Stations.objects.all()
-        else:
+            else: # addr
+                addr = request.GET.get('addr')
+                stations_queryset = StationsQuerySet().get_stations_by_addr(addr)
+
+        else: # lat, lng
             lat = request.GET.get('lat')
             lng = request.GET.get('lng')
             stations_queryset = StationsQuerySet().get_stations(lat,lng)
