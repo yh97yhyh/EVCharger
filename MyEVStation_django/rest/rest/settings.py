@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'ev_api',
-    'user_api'
+    'user_api',
+    'review_api'
 ]
 
 MIDDLEWARE = [
@@ -119,6 +120,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_x_FORWARDED_PROTO','https')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

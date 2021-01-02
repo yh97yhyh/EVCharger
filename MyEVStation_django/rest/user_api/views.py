@@ -24,11 +24,9 @@ class UserView(APIView):
         user_serializer = UserSerializer(data=request.data)
         if user_serializer.is_valid():
             user_serializer.save()
-            return Response({'result':'success', 'data':user_serializer.data}, 
-                            status=status.HTTP_201_CREATED)
+            return Response(user_serializer.data, status=status.HTTP_201_CREATED)
         else:
-            return Response({'result':'fail', 'data':user_serializer.errors},
-                            status=status.HTTP_400_BAD_REQUEST)
+            return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, **kwargs):
         if kwargs.get('u_id') is None:
