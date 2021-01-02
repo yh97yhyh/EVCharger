@@ -9,7 +9,7 @@ from django.db import models
 
 
 class Stations(models.Model):
-    id = models.CharField(db_column='id', max_length=8, blank=True, primary_key=True)  # Field name made lowercase.
+    id = models.CharField(db_column='id', max_length=8, blank=True, primary_key=True, null=False)  # Field name made lowercase.
     statNm = models.CharField(db_column='statNm', max_length=100, blank=True, null=True)  # Field name made lowercase.
     chgerId = models.CharField(db_column='chgerId', max_length=2, blank=True, null=True)  # Field name made lowercase.
     chgerType = models.CharField(db_column='chgerType', max_length=2, blank=True, null=True)  # Field name made lowercase.
