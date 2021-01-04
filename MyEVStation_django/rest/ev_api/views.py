@@ -24,7 +24,7 @@ class StationsQuerySet(ModelViewSet):
         return queryset
 
 
-    #1 : DC차데모 (01, 03, 05, 06)  , 2 : AC완속 (02), 7 : AC3상 (03, 06), 4: DC콤보 (04, 05)
+    #1 : DC차데모 (01, 03, 05, 06)  , 2 : AC완속 (02), 7 : AC3상 (03, 06, 07), 4: DC콤보 (04, 05, 06)
     def get_stations(self, lat, lng, filter1, filter2, filter4, filter7):
         queryset = Stations.objects.annotate(distance=(6371*ACos(Cos(Radians(float(lat)))*Cos(Radians('lat'))*Cos(Radians('lng')-Radians(float(lng)))
 	            +Sin(Radians(float(lat)))*Sin(Radians('lat')))))
@@ -40,11 +40,11 @@ class StationsQuerySet(ModelViewSet):
             querysetUnion =  querysetUnion.union(queryset_filter_2) if querysetUnion is not None else  queryset_filter_2   
 
         if filter4 is not None or filter4 is True:
-            queryset_filter_4 = queryset.filter(Q(chgerType = "02") | Q(chgerType ="05"))
+            queryset_filter_4 = queryset.filter(Q(chgerType = "04") | Q(chgerType ="05") | Q(chgerType ="06"))
             querysetUnion =  querysetUnion.union(queryset_filter_4) if querysetUnion is not None else queryset_filter_4    
 
         if filter7 is not None or filter7 is True:
-            queryset_filter_7 = queryset.filter(Q(chgerType = "03") | Q(chgerType ="06"))
+            queryset_filter_7 = queryset.filter(Q(chgerType = "03") | Q(chgerType ="06") | Q(chgerType ="07"))
             querysetUnion = querysetUnion.union(queryset_filter_7) if querysetUnion is not None else queryset_filter_7                
       
         return queryset if querysetUnion is None else querysetUnion
