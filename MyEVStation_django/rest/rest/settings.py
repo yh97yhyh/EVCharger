@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'rest.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
         'NAME': 'ev_data',
-        'USER': 'root',
+        'USER': 'yh',
         'PASSWORD': '1539',
         'port': '3306'
     }
