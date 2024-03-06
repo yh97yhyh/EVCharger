@@ -1,5 +1,5 @@
 # EVCharger
-[Youtube](https://www.youtube.com/watch?v=iS2sZk4cT0w)
+[Youtube](https://youtu.be/HbzVeFIlEbE)
 
 <img src = "https://user-images.githubusercontent.com/47898473/104293396-4e2f8f00-5501-11eb-9011-8d921393e5fa.PNG">
 <img src = "https://user-images.githubusercontent.com/47898473/104293399-4ec82580-5501-11eb-87bf-4bf1fdf69b82.PNG">
